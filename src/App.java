@@ -12,11 +12,11 @@ public class App {
         // create a list of top 5 things
         // --- TO DO: Change to your own list ---
         String[] top5 = {
-            "1. Coding",
-            "2. Music",
-            "3. Movies",
-            "4. Sports",
-            "5. Travel"
+            "1. Messi",
+            "2. Ronaldo",
+            "3. Van Nistelrooy",
+            "4. R9",
+            "5. Maldini"
         };
 
          // A JFrame is a window where we can design our UI
@@ -28,7 +28,9 @@ public class App {
         JButton nextButton = new JButton("Next");
         JLabel outputLabel = new JLabel();
         // --- TO DO: create a back button, format, and add it to the frame ---
-
+        JButton backButton = new JButton("Back");
+        JLabel outputLabel2 = new JLabel();
+        
         // place and size for components
         // setBounds(x position, y position, width, height)
         nextButton.setBounds(100, 200, 100, 50);
@@ -36,12 +38,18 @@ public class App {
         outputLabel.setFont(new Font("Arial", Font.PLAIN, 32));
         outputLabel.setForeground(Color.BLUE);
 
+        backButton.setBounds(150, 200, 100, 50);
+        outputLabel2.setBounds(150, 100, 200, 50);
+        outputLabel2.setFont(new Font("Arial", font.PLAIN, 32));
+        outputLabel.setForeground(Color.BLUE);
         // the output label will display the first item in the list initially
         outputLabel.setText( top5[currentIndex] );
 
         // add components to JFrame f
         frame.add(outputLabel);
         frame.add(nextButton);
+        frame.add(outputLabel2);
+        frame.add(backButton);
 
         // add event listener for button click
         nextButton.addActionListener(new ActionListener() {
@@ -52,7 +60,11 @@ public class App {
 
         // --- TO DO: add event listener for back button ---
         // --- TO DO: create a getPreviousIndex function, see below ---
-
+        backButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            currentIndex = getPreviousIndex(currentIndex, top5.length);
+            outputLabel2.setText(top5[currentIndex]);
+        }    });
 
         // make the frame visible
         frame.setVisible(true);
@@ -80,6 +92,13 @@ public class App {
      * @param listLength
      * @return previous index
      */
-    
+        public static int getPreviousIndex(int currentIndex, int listLength) {
+            if (currentIndex == listLength - 4){
+                return 5;
+            }
+            else{
+                return currentIndex + 1;
+            }
+        }
 }
 
